@@ -10,21 +10,6 @@
             if (!sessionStorage.getItem("ageVerified")) {
                 document.getElementById("age-verification").style.display = "flex";
             }
-
-            // Mobile Menu Toggle
-            const menuToggle = document.getElementById("menu-toggle");
-            const mobileMenu = document.getElementById("mobile-menu");
-
-            menuToggle.addEventListener("click", function () {
-                mobileMenu.classList.toggle("active");
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener("click", function (event) {
-                if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                    mobileMenu.classList.remove("active");
-                }
-            });
         });
 
         function verifyAge(isOldEnough) {
@@ -32,7 +17,7 @@
                 sessionStorage.setItem("ageVerified", "true");
                 document.getElementById("age-verification").style.display = "none";
             } else {
-                window.location.href = "https://www.google.com";
+                window.location.href = "https://www.google.com"; // Redirect for underage users
             }
         }
     </script>
@@ -47,20 +32,60 @@
             background: black;
             color: white;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             z-index: 9999;
         }
-        .modal {
+        #age-verification .modal {
             background: #181818;
             padding: 20px;
             border-radius: 5px;
             max-width: 400px;
             width: 90%;
         }
+        #age-verification h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        #age-verification p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .btn {
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+        .btn.enter {
+            background: orange;
+            color: black;
+        }
+        .btn.exit {
+            background: #333;
+            color: white;
+        }
+        .btn.enter:hover {
+            background: white;
+            color: black;
+        }
+        .btn.exit:hover {
+            background: red;
+        }
 
-        /* Main Styles */
+        /* Main Site Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -84,9 +109,9 @@
             font-weight: bold;
             color: white;
         }
-        .logo span { color: orange; }
-        
-        /* Navigation */
+        .logo span {
+            color: orange;
+        }
         nav {
             display: flex;
             align-items: center;
@@ -118,7 +143,9 @@
             transition: 0.3s;
             font-weight: bold;
         }
-        .nav-links li a:hover { color: orange; }
+        .nav-links li a:hover {
+            color: orange;
+        }
         .login-btn {
             background: orange;
             padding: 8px 15px;
@@ -126,50 +153,6 @@
             color: black;
             font-weight: bold;
         }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-        .hamburger div {
-            width: 30px;
-            height: 4px;
-            background: white;
-            margin: 5px 0;
-            border-radius: 5px;
-        }
-
-        /* Mobile Navigation */
-        .mobile-nav {
-            display: none;
-            flex-direction: column;
-            background: black;
-            position: absolute;
-            top: 60px;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
-            z-index: 1001;
-        }
-        .mobile-nav.active {
-            display: flex;
-        }
-        .mobile-nav a {
-            color: white;
-            padding: 10px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 18px;
-        }
-        .mobile-nav a:hover {
-            background: orange;
-            color: black;
-        }
-
-        /* Video Grid */
         .container {
             display: flex;
             justify-content: center;
@@ -191,16 +174,36 @@
             text-align: center;
             transition: 0.3s;
         }
-        .video-item:hover { transform: scale(1.05); }
+        .video-item:hover {
+            transform: scale(1.05);
+        }
         .video-item img {
             width: 100%;
             border-radius: 5px;
         }
-
-        /* Responsive Design */
+        .load-more {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background: orange;
+            border: none;
+            color: black;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .load-more:hover {
+            background: white;
+            color: black;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: black;
+            color: white;
+        }
         @media screen and (max-width: 768px) {
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
             .video-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -235,31 +238,21 @@
                 <li><a href="#">Upload</a></li>
                 <li><a href="#" class="login-btn">Login</a></li>
             </ul>
-            <div class="hamburger" id="menu-toggle">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
         </nav>
     </header>
-
-    <div class="mobile-nav" id="mobile-menu">
-        <a href="#">Home</a>
-        <a href="#">Categories</a>
-        <a href="#">Trending</a>
-        <a href="#">Upload</a>
-    </div>
-
+    
     <div class="container">
-        <section class="video-grid">
-            <div class="video-item"><img src="thumbnail1.jpg"><h3>Video Title 1</h3></div>
-            <div class="video-item"><img src="thumbnail2.jpg"><h3>Video Title 2</h3></div>
-            <div class="video-item"><img src="thumbnail3.jpg"><h3>Video Title 3</h3></div>
-            <div class="video-item"><img src="thumbnail4.jpg"><h3>Video Title 4</h3></div>
-        </section>
-    </div>
-
-        </section>
+        <main>
+            <section class="video-grid">
+                <div class="video-item">
+                    <img src="thumbnail1.jpg" alt="Video Thumbnail">
+                    <h3>Video Title</h3>
+                </div>
+                <div class="video-item">
+                    <img src="thumbnail2.jpg" alt="Video Thumbnail">
+                    <h3>Video Title</h3>
+                </div>
+            </section>
             <button class="load-more">Load More</button>
         </main>
     </div>
