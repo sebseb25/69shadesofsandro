@@ -3,32 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Greetings Hub</title>
+    <title>VideoHub</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="logo">
-            <span class="white">Video</span><span class="orange">Hub</span>
-        </div>
-        <button class="upload-btn">Upload Video</button>
+        <div class="logo">VideoHub</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Trending</a></li>
+                <li><a href="#">Upload</a></li>
+                <li><a href="#">Login</a></li>
+            </ul>
+        </nav>
     </header>
     
     <main>
-        <div class="video-grid">
-            <div class="video-card">
-                <img src="https://via.placeholder.com/300" alt="Happy Birthday John!">
-                <p>Happy Birthday John!</p>
+        <section class="video-grid">
+            <div class="video-item">
+                <img src="thumbnail1.jpg" alt="Video Thumbnail">
+                <h3>Video Title</h3>
             </div>
-            <div class="video-card">
-                <img src="https://via.placeholder.com/300" alt="Congrats on Your Promotion!">
-                <p>Congrats on Your Promotion!</p>
+            <div class="video-item">
+                <img src="thumbnail2.jpg" alt="Video Thumbnail">
+                <h3>Video Title</h3>
             </div>
-            <div class="video-card">
-                <img src="https://via.placeholder.com/300" alt="Merry Christmas!">
-                <p>Merry Christmas!</p>
+            <div class="video-item">
+                <img src="thumbnail3.jpg" alt="Video Thumbnail">
+                <h3>Video Title</h3>
             </div>
-        </div>
+        </section>
     </main>
+    
+    <footer>
+        <p>&copy; 2025 VideoHub. All rights reserved.</p>
+    </footer>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #181818;
+            color: white;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: black;
+            padding: 15px 20px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: orange;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+        .video-item {
+            background-color: #222;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .video-item img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: black;
+            color: white;
+        }
+    </style>
 </body>
 </html>
