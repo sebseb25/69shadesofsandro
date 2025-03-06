@@ -37,21 +37,65 @@
         }
     </script>
     <style>
-        /* 🔥 Pornhub-Inspired Theme */
+        /* Age Verification Modal */
+        #age-verification {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 9999;
+        }
+        #age-verification .modal {
+            background: #181818;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 400px;
+            width: 90%;
+        }
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .btn {
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+        .btn.enter {
+            background: orange;
+            color: black;
+        }
+        .btn.exit {
+            background: #333;
+            color: white;
+        }
+
+        /* Main Site Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #000; /* True black for strong contrast */
+            background-color: #181818;
             color: white;
         }
-
-        /* 🔥 Header / Navigation */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #111;
+            background-color: black;
             padding: 15px 20px;
             position: fixed;
             width: 100%;
@@ -64,10 +108,24 @@
             color: white;
         }
         .logo span {
-            color: #ff9800; /* Pornhub yellow-orange */
+            color: orange;
         }
 
-        /* 🔥 Navigation Links */
+        /* Desktop Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+        .search-bar {
+            padding: 7px;
+            border-radius: 5px;
+            border: none;
+            width: 250px;
+            margin-right: 20px;
+            background: #333;
+            color: white;
+        }
         .nav-links {
             list-style: none;
             display: flex;
@@ -82,27 +140,55 @@
         .nav-links li a {
             text-decoration: none;
             color: white;
+            transition: 0.3s;
             font-weight: bold;
-            position: relative;
-            transition: color 0.3s;
-        }
-        .nav-links li a:hover {
-            color: #ff9800;
         }
         .login-btn {
-            background: #ff9800;
-            padding: 8px 15px;
+            background: orange;
+            padding: 8px;
             border-radius: 5px;
             color: black;
             font-weight: bold;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .login-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 10px rgba(255, 165, 0, 0.5);
         }
 
-        /* 🔥 Video Grid */
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .hamburger div {
+            width: 30px;
+            height: 4px;
+            background: white;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background: black;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            z-index: 1001;
+        }
+        .mobile-nav.active {
+            display: flex;
+        }
+        .mobile-nav a {
+            color: white;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        /* Video Grid */
         .container {
             display: flex;
             justify-content: center;
@@ -122,48 +208,35 @@
             padding: 10px;
             border-radius: 5px;
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
-            cursor: pointer;
-        }
-        .video-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0px 4px 20px rgba(255, 165, 0, 0.2);
-            filter: brightness(1.2);
         }
         .video-item img {
             width: 100%;
             border-radius: 5px;
         }
-
-        /* 🔥 Load More Button */
         .load-more {
             display: block;
             margin: 20px auto;
             padding: 10px 20px;
-            background: #ff9800;
+            background: orange;
             border: none;
             color: black;
             font-weight: bold;
             border-radius: 5px;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .load-more:hover {
-            transform: scale(1.1);
-            box-shadow: 0px 4px 10px rgba(255, 165, 0, 0.5);
         }
 
-        /* 🔥 Footer */
+        /* Footer */
         footer {
             text-align: center;
             padding: 10px;
-            background-color: #111;
+            background-color: black;
             color: white;
         }
 
-        /* 🔥 Responsive Design */
+        /* Responsive Design */
         @media screen and (max-width: 768px) {
             .nav-links { display: none; }
+            .hamburger { display: flex; }
             .video-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -190,6 +263,7 @@
     <header>
         <div class="logo">Corn<span>Hub</span></div>
         <nav>
+            <input type="text" placeholder="Search..." class="search-bar">
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Categories</a></li>
@@ -197,6 +271,11 @@
                 <li><a href="#">Upload</a></li>
                 <li><a href="#" class="login-btn">Login</a></li>
             </ul>
+            <div class="hamburger" id="menu-toggle">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </nav>
     </header>
 
@@ -205,11 +284,11 @@
             <section class="video-grid">
                 <div class="video-item">
                     <img src="thumbnail1.jpg" alt="Video Thumbnail">
-                    <h3>Hot Corn Videos</h3>
+                    <h3>Video Title</h3>
                 </div>
                 <div class="video-item">
                     <img src="thumbnail2.jpg" alt="Video Thumbnail">
-                    <h3>Steamy Corn Compilation</h3>
+                    <h3>Video Title</h3>
                 </div>
             </section>
             <button class="load-more">Load More</button>
