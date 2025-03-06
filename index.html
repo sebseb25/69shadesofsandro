@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>69Shades of Sandro</title>
+    <title>VideoHub</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="logo">69Shadesof<span>Sandro</span></div>
+        <div class="logo">Video<span>Hub</span></div>
         <nav>
             <input type="text" placeholder="Search..." class="search-bar">
-            <ul>
+            <ul class="nav-links">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Categories</a></li>
                 <li><a href="#">Trending</a></li>
                 <li><a href="#">Upload</a></li>
                 <li><a href="#">Login</a></li>
             </ul>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
         </nav>
     </header>
     
@@ -67,6 +68,10 @@
             align-items: center;
             background-color: black;
             padding: 15px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
         }
         .logo {
             font-size: 24px;
@@ -80,21 +85,37 @@
             padding: 5px;
             border-radius: 5px;
             border: none;
+            width: 200px;
         }
-        nav ul {
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        .nav-links {
             list-style: none;
             display: flex;
             padding: 0;
         }
-        nav ul li {
+        .nav-links li {
             margin: 0 15px;
         }
-        nav ul li a {
+        .nav-links li a {
             text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+        .nav-links li a:hover {
+            color: orange;
+        }
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
             color: white;
         }
         .container {
             display: flex;
+            margin-top: 60px;
         }
         .sidebar {
             width: 200px;
@@ -112,6 +133,10 @@
             padding: 10px;
             border-radius: 5px;
             text-align: center;
+            transition: 0.3s;
+        }
+        .video-item:hover {
+            transform: scale(1.05);
         }
         .video-item img {
             width: 100%;
@@ -126,6 +151,12 @@
             color: black;
             font-weight: bold;
             border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .load-more:hover {
+            background: white;
+            color: black;
         }
         footer {
             text-align: center;
@@ -133,6 +164,29 @@
             background-color: black;
             color: white;
         }
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background: black;
+                width: 200px;
+                padding: 10px;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
     </style>
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
