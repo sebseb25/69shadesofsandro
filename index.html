@@ -5,59 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CornHub</title>
     <link rel="stylesheet" href="styles.css">
-</head>
-<body onload="checkAgeVerification()">
-    
-    <!-- Age Verification Modal -->
-    <div id="age-verification" class="modal">
-        <div class="modal-content">
-            <h2>Age Verification</h2>
-            <p>You must be 18 years or older to access this site.</p>
-            <button onclick="verifyAge(true)">I am 18+</button>
-            <button onclick="verifyAge(false)">I am under 18</button>
-        </div>
-    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (!sessionStorage.getItem("ageVerified")) {
+                document.getElementById("age-verification").style.display = "flex";
+            }
+        });
 
-    <header>
-        <div class="logo">Corn<span>Hub</span></div>
-        <nav>
-            <input type="text" placeholder="Search..." class="search-bar">
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">Trending</a></li>
-                <li><a href="#">Upload</a></li>
-                <li><a href="#" class="login-btn">Login</a></li>
-            </ul>
-            <div class="hamburger" onclick="toggleMenu()">☰</div>
-        </nav>
-    </header>
-    
-    <div class="container">
-        <main>
-            <section class="video-grid">
-                <div class="video-item">
-                    <img src="thumbnail1.jpg" alt="Video Thumbnail">
-                    <h3>Video Title</h3>
-                </div>
-                <div class="video-item">
-                    <img src="thumbnail2.jpg" alt="Video Thumbnail">
-                    <h3>Video Title</h3>
-                </div>
-                <div class="video-item">
-                    <img src="thumbnail3.jpg" alt="Video Thumbnail">
-                    <h3>Video Title</h3>
-                </div>
-            </section>
-            <button class="load-more">Load More</button>
-        </main>
-    </div>
-    
-    <footer>
-        <p>&copy; 2025 CornHub. All rights reserved.</p>
-    </footer>
-
+        function verifyAge(isOldEnough) {
+            if (isOldEnough) {
+                sessionStorage.setItem("ageVerified", "true");
+                document.getElementById("age-verification").style.display = "none";
+            } else {
+                window.location.href = "https://www.google.com"; // Redirect for underage users
+            }
+        }
+    </script>
     <style>
+        /* Age Verification Modal */
+        #age-verification {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 9999;
+        }
+        #age-verification .modal {
+            background: #181818;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 400px;
+            width: 90%;
+        }
+        #age-verification h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        #age-verification p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .btn {
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+        .btn.enter {
+            background: orange;
+            color: black;
+        }
+        .btn.exit {
+            background: #333;
+            color: white;
+        }
+        .btn.enter:hover {
+            background: white;
+            color: black;
+        }
+        .btn.exit:hover {
+            background: red;
+        }
+
+        /* Main Site Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -80,10 +108,14 @@
             font-size: 24px;
             font-weight: bold;
             color: white;
-            margin-right: 20px;
         }
         .logo span {
             color: orange;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
         }
         .search-bar {
             padding: 7px;
@@ -108,6 +140,7 @@
         .nav-links li a {
             text-decoration: none;
             color: white;
+            transition: 0.3s;
             font-weight: bold;
         }
         .nav-links li a:hover {
@@ -119,12 +152,6 @@
             border-radius: 5px;
             color: black;
             font-weight: bold;
-        }
-        .hamburger {
-            display: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: white;
         }
         .container {
             display: flex;
@@ -145,6 +172,10 @@
             padding: 10px;
             border-radius: 5px;
             text-align: center;
+            transition: 0.3s;
+        }
+        .video-item:hover {
+            transform: scale(1.05);
         }
         .video-item img {
             width: 100%;
@@ -160,6 +191,7 @@
             font-weight: bold;
             border-radius: 5px;
             cursor: pointer;
+            transition: 0.3s;
         }
         .load-more:hover {
             background: white;
@@ -171,85 +203,63 @@
             background-color: black;
             color: white;
         }
-
-        /* Age Verification Modal */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            visibility: hidden;
-        }
-        .modal-content {
-            background: black;
-            padding: 20px;
-            text-align: center;
-            border-radius: 10px;
-            color: white;
-            box-shadow: 0px 0px 10px rgba(255, 165, 0, 0.5);
-        }
-        .modal-content button {
-            background: orange;
-            border: none;
-            padding: 10px 20px;
-            margin: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            border-radius: 5px;
-            color: black;
-        }
-        .modal-content button:hover {
-            background: white;
-        }
-        
         @media screen and (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                right: 20px;
-                background: black;
-                width: 200px;
-                padding: 10px;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-            .hamburger {
-                display: block;
-            }
             .video-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
+</head>
+<body>
 
-    <script>
-        function checkAgeVerification() {
-            if (!localStorage.getItem("ageVerified")) {
-                document.getElementById("age-verification").style.visibility = "visible";
-            }
-        }
+    <!-- Age Verification Modal -->
+    <div id="age-verification">
+        <div class="modal">
+            <h2>This is an adult website</h2>
+            <p>
+                This website contains age-restricted materials. By entering, you confirm that you are at least 18 years old 
+                and consent to viewing such content.
+            </p>
+            <div class="btn-container">
+                <button class="btn enter" onclick="verifyAge(true)">I am 18 or older - Enter</button>
+                <button class="btn exit" onclick="verifyAge(false)">I am under 18 - Exit</button>
+            </div>
+        </div>
+    </div>
 
-        function verifyAge(isAdult) {
-            if (isAdult) {
-                localStorage.setItem("ageVerified", "true");
-                document.getElementById("age-verification").style.visibility = "hidden";
-            } else {
-                window.location.href = "https://www.google.com";
-            }
-        }
+    <header>
+        <div class="logo">Corn<span>Hub</span></div>
+        <nav>
+            <input type="text" placeholder="Search..." class="search-bar">
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Trending</a></li>
+                <li><a href="#">Upload</a></li>
+                <li><a href="#" class="login-btn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <main>
+            <section class="video-grid">
+                <div class="video-item">
+                    <img src="thumbnail1.jpg" alt="Video Thumbnail">
+                    <h3>Video Title</h3>
+                </div>
+                <div class="video-item">
+                    <img src="thumbnail2.jpg" alt="Video Thumbnail">
+                    <h3>Video Title</h3>
+                </div>
+            </section>
+            <button class="load-more">Load More</button>
+        </main>
+    </div>
 
-        function toggleMenu() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        }
-    </script>
+    <footer>
+        <p>&copy; 2025 CornHub. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
