@@ -1,31 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CornHub</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="logo">Corn<span>Hub </span></div>
         <div class="logo">Corn<span>Hub</span></div>
         <nav>
-            <div class="spacer"></div>
             <input type="text" placeholder="Search..." class="search-bar">
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
-@@ -73,123 +74,126 @@
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">Trending</a></li>
+                <li><a href="#">Upload</a></li>
+                <li><a href="#" class="login-btn">Login</a></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <main>
+            <section class="video-grid">
+                <div class="video-item">
+                    <img src="thumbnail1.jpg" alt="Video Thumbnail">
+                    <h3>Video Title</h3>
+                </div>
+                <div class="video-item">
+                    <img src="thumbnail2.jpg" alt="Video Thumbnail">
+                    <h3>Video Title</h3>
+                </div>
+                <div class="video-item">
+                    <img src="thumbnail3.jpg" alt="Video Thumbnail">
+                    <h3>Video Title</h3>
+                </div>
+            </section>
+            <button class="load-more">Load More</button>
+        </main>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 CornHub. All rights reserved.</p>
+    </footer>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #181818;
+            color: white;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: black;
+            padding: 15px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-right: 20px; /* Added spacing */
+        }
         .logo span {
             color: orange;
-        }
-        .spacer {
-            width: 20px;
-        }
-        .search-bar {
-            padding: 5px;
-            border-radius: 5px;
-            border: none;
-            width: 200px;
-            margin-right: 15px;
         }
         nav {
             display: flex;
             align-items: center;
             flex-grow: 1;
+        }
+        .search-bar {
+            padding: 7px;
+            border-radius: 5px;
+            border: none;
+            width: 250px;
+            margin-right: 20px; /* Space between search and nav */
+            background: #333;
+            color: white;
         }
         .nav-links {
             list-style: none;
@@ -42,12 +103,16 @@
             text-decoration: none;
             color: white;
             transition: 0.3s;
+            font-weight: bold;
         }
         .nav-links li a:hover {
             color: orange;
         }
         .login-btn {
-            margin-left: auto;
+            background: orange;
+            padding: 8px 15px;
+            border-radius: 5px;
+            color: black;
             font-weight: bold;
         }
         .hamburger {
