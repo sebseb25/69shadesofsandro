@@ -5,26 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CornHub</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             if (!sessionStorage.getItem("ageVerified")) {
                 document.getElementById("age-verification").style.display = "flex";
             }
-
-            // Mobile Menu Toggle
-            const menuToggle = document.getElementById("menu-toggle");
-            const mobileMenu = document.getElementById("mobile-menu");
-
-            menuToggle.addEventListener("click", function () {
-                mobileMenu.classList.toggle("active");
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener("click", function (event) {
-                if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
-                    mobileMenu.classList.remove("active");
-                }
-            });
         });
 
         function verifyAge(isOldEnough) {
@@ -37,6 +23,15 @@
         }
     </script>
     <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0f0f0f;
+            color: white;
+        }
+
         /* Age Verification Modal */
         #age-verification {
             position: fixed;
@@ -44,10 +39,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: black;
-            color: white;
+            background: rgba(0, 0, 0, 0.95);
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
@@ -55,27 +48,23 @@
         }
         #age-verification .modal {
             background: #181818;
-            padding: 20px;
+            padding: 25px;
             border-radius: 5px;
             max-width: 400px;
             width: 90%;
         }
-        .btn-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
         .btn {
-            padding: 10px;
+            padding: 12px;
             font-size: 16px;
             font-weight: bold;
             border: none;
             cursor: pointer;
             width: 100%;
             border-radius: 5px;
+            margin-top: 10px;
         }
         .btn.enter {
-            background: orange;
+            background: #ff9800;
             color: black;
         }
         .btn.exit {
@@ -83,109 +72,74 @@
             color: white;
         }
 
-        /* Main Site Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #181818;
-            color: white;
-        }
+        /* Header */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             background-color: black;
-            padding: 15px 20px;
+            padding: 12px 20px;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
         }
         .logo {
-            font-size: 24px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 26px;
             font-weight: bold;
             color: white;
         }
         .logo span {
-            color: orange;
+            color: #ff9800;
         }
 
-        /* Desktop Navigation */
+        /* Search Bar */
+        .search-bar {
+            padding: 8px;
+            border-radius: 20px;
+            border: none;
+            width: 250px;
+            background: #333;
+            color: white;
+            text-align: center;
+            outline: none;
+        }
+
+        /* Navigation */
         nav {
             display: flex;
             align-items: center;
             flex-grow: 1;
         }
-        .search-bar {
-            padding: 7px;
-            border-radius: 5px;
-            border: none;
-            width: 250px;
-            margin-right: 20px;
-            background: #333;
-            color: white;
-        }
         .nav-links {
             list-style: none;
             display: flex;
-            padding: 0;
             margin: 0;
+            padding: 0;
             flex-grow: 1;
             justify-content: center;
         }
         .nav-links li {
             margin: 0 15px;
         }
-        .nav-links li a {
+        .nav-links a {
             text-decoration: none;
             color: white;
-            transition: 0.3s;
             font-weight: bold;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+        .nav-links a:hover {
+            color: #ff9800;
         }
         .login-btn {
-            background: orange;
-            padding: 8px;
+            background: #ff9800;
+            padding: 8px 14px;
             border-radius: 5px;
             color: black;
             font-weight: bold;
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-        .hamburger div {
-            width: 30px;
-            height: 4px;
-            background: white;
-            margin: 5px 0;
-            border-radius: 5px;
-        }
-
-        /* Mobile Navigation */
-        .mobile-nav {
-            display: none;
-            flex-direction: column;
-            background: black;
-            position: absolute;
-            top: 60px;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            z-index: 1001;
-        }
-        .mobile-nav.active {
-            display: flex;
-        }
-        .mobile-nav a {
-            color: white;
-            padding: 10px;
-            text-align: center;
             text-decoration: none;
-            font-size: 18px;
         }
 
         /* Video Grid */
@@ -197,8 +151,8 @@
         }
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
             padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
@@ -206,18 +160,29 @@
         .video-item {
             background-color: #222;
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 8px;
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .video-item:hover {
+            transform: scale(1.05);
         }
         .video-item img {
             width: 100%;
-            border-radius: 5px;
+            border-radius: 8px;
+            transition: 0.3s;
         }
+        .video-item h3 {
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        /* Load More Button */
         .load-more {
             display: block;
             margin: 20px auto;
-            padding: 10px 20px;
-            background: orange;
+            padding: 12px 24px;
+            background: #ff9800;
             border: none;
             color: black;
             font-weight: bold;
@@ -228,15 +193,17 @@
         /* Footer */
         footer {
             text-align: center;
-            padding: 10px;
+            padding: 15px;
             background-color: black;
             color: white;
+            font-size: 12px;
         }
 
         /* Responsive Design */
         @media screen and (max-width: 768px) {
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
+            .nav-links {
+                display: none;
+            }
             .video-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -248,15 +215,10 @@
     <!-- Age Verification Modal -->
     <div id="age-verification">
         <div class="modal">
-            <h2>This is an adult website</h2>
-            <p>
-                This website contains age-restricted materials. By entering, you confirm that you are at least 18 years old 
-                and consent to viewing such content.
-            </p>
-            <div class="btn-container">
-                <button class="btn enter" onclick="verifyAge(true)">I am 18 or older - Enter</button>
-                <button class="btn exit" onclick="verifyAge(false)">I am under 18 - Exit</button>
-            </div>
+            <h2>Adults Only</h2>
+            <p>This website contains age-restricted materials. You must be 18 or older to continue.</p>
+            <button class="btn enter" onclick="verifyAge(true)">I am 18+ - Enter</button>
+            <button class="btn exit" onclick="verifyAge(false)">I am under 18 - Exit</button>
         </div>
     </div>
 
@@ -271,11 +233,6 @@
                 <li><a href="#">Upload</a></li>
                 <li><a href="#" class="login-btn">Login</a></li>
             </ul>
-            <div class="hamburger" id="menu-toggle">
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
         </nav>
     </header>
 
@@ -284,11 +241,11 @@
             <section class="video-grid">
                 <div class="video-item">
                     <img src="thumbnail1.jpg" alt="Video Thumbnail">
-                    <h3>Video Title</h3>
+                    <h3>Hot Corn Videos</h3>
                 </div>
                 <div class="video-item">
                     <img src="thumbnail2.jpg" alt="Video Thumbnail">
-                    <h3>Video Title</h3>
+                    <h3>Best Kernel Action</h3>
                 </div>
             </section>
             <button class="load-more">Load More</button>
