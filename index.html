@@ -6,7 +6,18 @@
     <title>CornHub</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="checkAgeVerification()">
+    
+    <!-- Age Verification Modal -->
+    <div id="age-verification" class="modal">
+        <div class="modal-content">
+            <h2>Age Verification</h2>
+            <p>You must be 18 years or older to access this site.</p>
+            <button onclick="verifyAge(true)">I am 18+</button>
+            <button onclick="verifyAge(false)">I am under 18</button>
+        </div>
+    </div>
+
     <header>
         <div class="logo">Corn<span>Hub</span></div>
         <nav>
@@ -69,22 +80,17 @@
             font-size: 24px;
             font-weight: bold;
             color: white;
-            margin-right: 20px; /* Added spacing */
+            margin-right: 20px;
         }
         .logo span {
             color: orange;
-        }
-        nav {
-            display: flex;
-            align-items: center;
-            flex-grow: 1;
         }
         .search-bar {
             padding: 7px;
             border-radius: 5px;
             border: none;
             width: 250px;
-            margin-right: 20px; /* Space between search and nav */
+            margin-right: 20px;
             background: #333;
             color: white;
         }
@@ -102,7 +108,6 @@
         .nav-links li a {
             text-decoration: none;
             color: white;
-            transition: 0.3s;
             font-weight: bold;
         }
         .nav-links li a:hover {
@@ -140,10 +145,6 @@
             padding: 10px;
             border-radius: 5px;
             text-align: center;
-            transition: 0.3s;
-        }
-        .video-item:hover {
-            transform: scale(1.05);
         }
         .video-item img {
             width: 100%;
@@ -159,7 +160,6 @@
             font-weight: bold;
             border-radius: 5px;
             cursor: pointer;
-            transition: 0.3s;
         }
         .load-more:hover {
             background: white;
@@ -171,6 +171,42 @@
             background-color: black;
             color: white;
         }
+
+        /* Age Verification Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+        }
+        .modal-content {
+            background: black;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            color: white;
+            box-shadow: 0px 0px 10px rgba(255, 165, 0, 0.5);
+        }
+        .modal-content button {
+            background: orange;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            color: black;
+        }
+        .modal-content button:hover {
+            background: white;
+        }
+        
         @media screen and (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -193,10 +229,27 @@
             }
         }
     </style>
+
     <script>
+        function checkAgeVerification() {
+            if (!localStorage.getItem("ageVerified")) {
+                document.getElementById("age-verification").style.visibility = "visible";
+            }
+        }
+
+        function verifyAge(isAdult) {
+            if (isAdult) {
+                localStorage.setItem("ageVerified", "true");
+                document.getElementById("age-verification").style.visibility = "hidden";
+            } else {
+                window.location.href = "https://www.google.com";
+            }
+        }
+
         function toggleMenu() {
             document.querySelector('.nav-links').classList.toggle('active');
         }
     </script>
+
 </body>
 </html>
