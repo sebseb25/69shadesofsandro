@@ -117,12 +117,12 @@
         .container {
             display: flex;
             justify-content: center;
-            margin-top: 60px;
+            margin-top: 80px;
             padding: 20px;
         }
         .video-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
             padding: 20px;
             max-width: 1200px;
@@ -181,9 +181,8 @@
             .hamburger {
                 display: block;
             }
-            .login-btn {
-                margin-left: 0;
-                text-align: center;
+            .video-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
