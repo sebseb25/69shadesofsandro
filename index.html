@@ -118,10 +118,16 @@
         }
         function enterSite() {
             document.getElementById('age-verification').style.display = 'none';
+            localStorage.setItem('ageVerified', 'true');
         }
         function exitSite() {
             window.location.href = "https://www.google.com";
         }
+        window.onload = function() {
+            if (localStorage.getItem('ageVerified') === 'true') {
+                document.getElementById('age-verification').style.display = 'none';
+            }
+        };
     </script>
 </body>
 </html>
