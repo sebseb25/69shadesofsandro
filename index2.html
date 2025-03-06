@@ -11,7 +11,6 @@
                 document.getElementById("age-verification").style.display = "flex";
             }
 
-            // Mobile Menu Toggle
             const menuToggle = document.getElementById("menu-toggle");
             const mobileMenu = document.getElementById("mobile-menu");
 
@@ -19,7 +18,6 @@
                 mobileMenu.classList.toggle("active");
             });
 
-            // Close menu when clicking outside
             document.addEventListener("click", function (event) {
                 if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
                     mobileMenu.classList.remove("active");
@@ -36,191 +34,16 @@
             }
         }
     </script>
-    <style>
-        /* Age Verification Modal */
-        #age-verification {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: black;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            z-index: 9999;
-        }
-        #age-verification .modal {
-            background: #181818;
-            padding: 20px;
-            border-radius: 5px;
-            max-width: 400px;
-            width: 90%;
-        }
-        .btn-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .btn {
-            padding: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 5px;
-        }
-        .btn.enter {
-            background: orange;
-            color: black;
-        }
-        .btn.exit {
-            background: #333;
-            color: white;
-        }
-
-        /* Main Site Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #181818;
-            color: white;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: black;
-            padding: 15px 20px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-        }
-        .logo span {
-            color: orange;
-        }
-
-        /* Desktop Navigation */
-        nav {
-            display: flex;
-            align-items: center;
-            flex-grow: 1;
-        }
-        .search-bar {
-            padding: 7px;
-            border-radius: 5px;
-            border: none;
-            width: 250px;
-            margin-right: 20px;
-            background: #333;
-            color: white;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            padding: 0;
-            margin: 0;
-            flex-grow: 1;
-            justify-content: center;
-        }
-        .nav-links li {
-            margin: 0 15px;
-        }
-        .nav-links li a {
-            text-decoration: none;
-            color: white;
-            transition: 0.3s;
-            font-weight: bold;
-        }
-        .login-btn {
-            background: orange;
-            padding: 8px;
-            border-radius: 5px;
-            color: black;
-            font-weight: bold;
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-        .hamburger div {
-            width: 30px;
-            height: 4px;
-            background: white;
-            margin: 5px 0;
-            border-radius: 5px;
-        }
-
-        /* Video Grid - Centered & Responsive */
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 80px;
-            padding: 20px;
-        }
-
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            max-width: 1200px;
-            width: 100%;
-            justify-content: center;
-        }
-
-        .video-item {
-            background-color: #222;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        /* Hover effect - Slight movement */
-        .video-item:hover {
-            transform: scale(1.05);
-        }
-
-        /* Mobile adjustments */
-        @media screen and (max-width: 768px) {
-            .video-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media screen and (max-width: 480px) {
-            .video-grid {
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <!-- Age Verification Modal -->
     <div id="age-verification">
         <div class="modal">
-            <h2>This is an adult website</h2>
-            <p>This website contains age-restricted materials. By entering, you confirm that you are at least 18 years old and consent to viewing such content.</p>
+            <h2>Welcome to CornHub</h2>
+            <p>This website contains age-restricted materials. You must be 18+ to enter.</p>
             <div class="btn-container">
-                <button class="btn enter" onclick="verifyAge(true)">I am 18 or older - Enter</button>
-                <button class="btn exit" onclick="verifyAge(false)">I am under 18 - Exit</button>
+                <button class="btn enter" onclick="verifyAge(true)">Enter</button>
+                <button class="btn exit" onclick="verifyAge(false)">Exit</button>
             </div>
         </div>
     </div>
@@ -247,7 +70,7 @@
     <div class="container">
         <main>
             <section class="video-grid">
-               <section class="video-grid">
+                <section class="video-grid">
                 <div class="video-item">
                 <a href="https://assets.softr-files.com/applications/ebc7af41-fc64-4c6e-910d-c8b98dc1e5b5/assets/3a23ecf0-5ec7-4792-834a-c7695bc1d7ec.mp4" target="_blank">    
                     <img src="https://m.media-amazon.com/images/M/MV5BOTJjZTBmYWItMmRhMy00OGJjLWEyMGItYTcwYTE1ZmQyNGRmXkEyXkFqcGc@._V1_.jpg" alt="Video Thumbnail">
@@ -269,13 +92,13 @@
                     <h3>Massage Turns Into Corn</h3>
                 </div>
             </section>
+                
+            <button class="load-more">Load More</button>
         </main>
     </div>
 
     <footer>
         <p>&copy; 2025 CornHub. All rights reserved.</p>
     </footer>
-
 </body>
 </html>
-
