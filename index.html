@@ -37,7 +37,7 @@
         }
     </script>
     <style>
-        /* Age Verification Modal - Fully Retained */
+        /* Age Verification Modal */
         #age-verification {
             position: fixed;
             top: 0;
@@ -60,15 +60,6 @@
             max-width: 400px;
             width: 90%;
         }
-        #age-verification h2 {
-            font-size: 22px;
-            margin-bottom: 10px;
-        }
-        #age-verification p {
-            font-size: 14px;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
         .btn-container {
             display: flex;
             flex-direction: column;
@@ -78,7 +69,6 @@
             padding: 10px;
             font-size: 16px;
             font-weight: bold;
-            text-align: center;
             border: none;
             cursor: pointer;
             width: 100%;
@@ -91,13 +81,6 @@
         .btn.exit {
             background: #333;
             color: white;
-        }
-        .btn.enter:hover {
-            background: white;
-            color: black;
-        }
-        .btn.exit:hover {
-            background: red;
         }
 
         /* Main Site Styles */
@@ -295,6 +278,22 @@
             </div>
         </nav>
     </header>
+
+    <div class="container">
+        <main>
+            <section class="video-grid">
+                <div class="video-item">
+                    <img src="thumbnail1.jpg" alt="Video Thumbnail">
+                    <h3>Video Title</h3>
+                </div>
+                <div class="video-item">
+                    <img src="thumbnail2.jpg" alt="Video Thumbnail">
+                    <h3>Video Title</h3>
+                </div>
+            </section>
+            <button class="load-more">Load More</button>
+        </main>
+    </div>
 
     <footer>
         <p>&copy; 2025 CornHub. All rights reserved.</p>
