@@ -3,38 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CornHub</title>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            if (!sessionStorage.getItem("ageVerified")) {
-                document.getElementById("age-verification").style.display = "flex";
-            }
-
-            // Mobile Menu Toggle
-            const menuToggle = document.getElementById("menu-toggle");
-            const navMenu = document.getElementById("nav-menu");
-
-            menuToggle.addEventListener("click", function () {
-                navMenu.classList.toggle("active");
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener("click", function (event) {
-                if (!menuToggle.contains(event.target) && !navMenu.contains(event.target)) {
-                    navMenu.classList.remove("active");
-                }
-            });
-        });
-
-        function verifyAge(isOldEnough) {
-            if (isOldEnough) {
-                sessionStorage.setItem("ageVerified", "true");
-                document.getElementById("age-verification").style.display = "none";
-            } else {
-                window.location.href = "https://www.google.com"; // Redirect underage users
-            }
-        }
-    </script>
+    <title>Age Verification</title>
     <style>
         /* Age Verification Modal */
         #age-verification {
@@ -46,13 +15,12 @@
             background: black;
             color: white;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             z-index: 9999;
         }
-        #age-verification .modal {
+        .modal {
             background: #181818;
             padding: 20px;
             border-radius: 5px;
@@ -78,14 +46,7 @@
         .btn.enter:hover { background: white; color: black; }
         .btn.exit:hover { background: red; }
 
-        /* Main Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #181818;
-            color: white;
-        }
+        /* Header */
         header {
             display: flex;
             justify-content: space-between;
@@ -109,15 +70,6 @@
             display: flex;
             align-items: center;
         }
-        .search-bar {
-            padding: 7px;
-            border-radius: 5px;
-            border: none;
-            width: 250px;
-            margin-right: 20px;
-            background: #333;
-            color: white;
-        }
         .nav-links {
             list-style: none;
             display: flex;
@@ -134,13 +86,6 @@
             font-weight: bold;
         }
         .nav-links li a:hover { color: orange; }
-        .login-btn {
-            background: orange;
-            padding: 8px 15px;
-            border-radius: 5px;
-            color: black;
-            font-weight: bold;
-        }
 
         /* Hamburger Menu */
         .hamburger {
@@ -156,7 +101,7 @@
             border-radius: 5px;
         }
 
-        /* Mobile Nav */
+        /* Mobile Navigation */
         .mobile-nav {
             display: none;
             flex-direction: column;
@@ -211,13 +156,11 @@
     <header>
         <div class="logo">Corn<span>Hub</span></div>
         <nav>
-            <input type="text" placeholder="Search..." class="search-bar">
             <ul class="nav-links" id="nav-menu">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Categories</a></li>
                 <li><a href="#">Trending</a></li>
                 <li><a href="#">Upload</a></li>
-                <li><a href="#" class="login-btn">Login</a></li>
             </ul>
             <div class="hamburger" id="menu-toggle">
                 <div></div>
@@ -227,32 +170,44 @@
         </nav>
     </header>
 
-    <div class="mobile-nav" id="nav-menu">
+    <div class="mobile-nav" id="mobile-menu">
         <a href="#">Home</a>
         <a href="#">Categories</a>
         <a href="#">Trending</a>
         <a href="#">Upload</a>
-        <a href="#" class="login-btn">Login</a>
     </div>
 
-    <div class="container">
-        <main>
-            <section class="video-grid">
-                <div class="video-item">
-                    <img src="thumbnail1.jpg" alt="Video Thumbnail">
-                    <h3>Video Title</h3>
-                </div>
-                <div class="video-item">
-                    <img src="thumbnail2.jpg" alt="Video Thumbnail">
-                    <h3>Video Title</h3>
-                </div>
-            </section>
-        </main>
-    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (!sessionStorage.getItem("ageVerified")) {
+                document.getElementById("age-verification").style.display = "flex";
+            }
 
-    <footer>
-        <p>&copy; 2025 CornHub. All rights reserved.</p>
-    </footer>
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById("menu-toggle");
+            const mobileMenu = document.getElementById("mobile-menu");
+
+            menuToggle.addEventListener("click", function () {
+                mobileMenu.classList.toggle("active");
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener("click", function (event) {
+                if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+                    mobileMenu.classList.remove("active");
+                }
+            });
+        });
+
+        function verifyAge(isOldEnough) {
+            if (isOldEnough) {
+                sessionStorage.setItem("ageVerified", "true");
+                document.getElementById("age-verification").style.display = "none";
+            } else {
+                window.location.href = "https://www.google.com"; // Redirect underage users
+            }
+        }
+    </script>
 
 </body>
 </html>
