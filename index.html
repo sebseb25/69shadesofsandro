@@ -37,7 +37,7 @@
         }
     </script>
     <style>
-        /* Age Verification Modal */
+        /* Age Verification Modal - Fully Retained */
         #age-verification {
             position: fixed;
             top: 0;
@@ -60,8 +60,47 @@
             max-width: 400px;
             width: 90%;
         }
+        #age-verification h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        #age-verification p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .btn {
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+        .btn.enter {
+            background: orange;
+            color: black;
+        }
+        .btn.exit {
+            background: #333;
+            color: white;
+        }
+        .btn.enter:hover {
+            background: white;
+            color: black;
+        }
+        .btn.exit:hover {
+            background: red;
+        }
 
-        /* Main Styles */
+        /* Main Site Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -123,7 +162,7 @@
         }
         .login-btn {
             background: orange;
-            padding: 8px 15px;
+            padding: 8px;
             border-radius: 5px;
             color: black;
             font-weight: bold;
@@ -256,29 +295,6 @@
             </div>
         </nav>
     </header>
-
-    <div class="mobile-nav" id="mobile-menu">
-        <a href="#">Home</a>
-        <a href="#">Categories</a>
-        <a href="#">Trending</a>
-        <a href="#">Upload</a>
-    </div>
-
-    <div class="container">
-        <main>
-            <section class="video-grid">
-                <div class="video-item">
-                    <img src="thumbnail1.jpg" alt="Video Thumbnail">
-                    <h3>Video Title</h3>
-                </div>
-                <div class="video-item">
-                    <img src="thumbnail2.jpg" alt="Video Thumbnail">
-                    <h3>Video Title</h3>
-                </div>
-            </section>
-            <button class="load-more">Load More</button>
-        </main>
-    </div>
 
     <footer>
         <p>&copy; 2025 CornHub. All rights reserved.</p>
