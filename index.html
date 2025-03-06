@@ -23,14 +23,6 @@
     </header>
     
     <div class="container">
-        <aside class="sidebar">
-            <h3>Categories</h3>
-            <ul>
-                <li><a href="#">Category 1</a></li>
-                <li><a href="#">Category 2</a></li>
-                <li><a href="#">Category 3</a></li>
-            </ul>
-        </aside>
         <main>
             <section class="video-grid">
                 <div class="video-item">
@@ -124,11 +116,8 @@
         }
         .container {
             display: flex;
+            justify-content: center;
             margin-top: 60px;
-        }
-        .sidebar {
-            width: 200px;
-            background: #222;
             padding: 20px;
         }
         .video-grid {
@@ -136,6 +125,8 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 15px;
             padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         .video-item {
             background-color: #222;
