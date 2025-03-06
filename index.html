@@ -60,29 +60,6 @@
             max-width: 400px;
             width: 90%;
         }
-        .btn-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .btn {
-            padding: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 5px;
-        }
-        .btn.enter {
-            background: orange;
-            color: black;
-        }
-        .btn.exit {
-            background: #333;
-            color: white;
-        }
 
         /* Main Styles */
         body {
@@ -144,9 +121,6 @@
             transition: 0.3s;
             font-weight: bold;
         }
-        .nav-links li a:hover {
-            color: orange;
-        }
         .login-btn {
             background: orange;
             padding: 8px 15px;
@@ -179,7 +153,6 @@
             left: 0;
             width: 100%;
             padding: 20px;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
             z-index: 1001;
         }
         .mobile-nav.active {
@@ -191,10 +164,6 @@
             text-align: center;
             text-decoration: none;
             font-size: 18px;
-        }
-        .mobile-nav a:hover {
-            background: orange;
-            color: black;
         }
 
         /* Video Grid */
@@ -217,10 +186,10 @@
             padding: 10px;
             border-radius: 5px;
             text-align: center;
-            transition: 0.3s;
         }
-        .video-item:hover {
-            transform: scale(1.05);
+        .video-item img {
+            width: 100%;
+            border-radius: 5px;
         }
         .load-more {
             display: block;
@@ -232,6 +201,14 @@
             font-weight: bold;
             border-radius: 5px;
             cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: black;
+            color: white;
         }
 
         /* Responsive Design */
@@ -286,6 +263,26 @@
         <a href="#">Trending</a>
         <a href="#">Upload</a>
     </div>
+
+    <div class="container">
+        <main>
+            <section class="video-grid">
+                <div class="video-item">
+                    <img src="thumbnail1.jpg" alt="Video Thumbnail">
+                    <h3>Video Title</h3>
+                </div>
+                <div class="video-item">
+                    <img src="thumbnail2.jpg" alt="Video Thumbnail">
+                    <h3>Video Title</h3>
+                </div>
+            </section>
+            <button class="load-more">Load More</button>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 CornHub. All rights reserved.</p>
+    </footer>
 
 </body>
 </html>
